@@ -72,6 +72,21 @@ app.get('/view-locations/user-id/:id', (req,res) => {
   res.json({message: 'Howdy'})
 })
 
+app.post('/location/user-id/:id', (req,res) => {
+  let id = req.params.id
+  let lat = req.body.lat
+  let long = req.body.long
+
+  let location = models.Coordinate.build({
+    userId: id,
+    lat: lat,
+    long: long
+  })
+  location.save().then((savedCoordId) => {
+    res.json({success: true, message: 'Location was saved.'})
+  }).catch(err => res.json({success: 'false'}))
+})
+
 app.listen(PORT,function(){
   console.log("Locations getting served..")
 })

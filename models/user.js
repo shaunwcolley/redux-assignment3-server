@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     pass: DataTypes.STRING
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.Coordinate,{
+      as: 'coordinate',
+      foreignKey: 'userId'
+    })
   };
   return User;
 };

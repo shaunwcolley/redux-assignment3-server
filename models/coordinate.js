@@ -6,7 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Coordinate.associate = function(models) {
-    // associations can be defined here
+    Coordinate.belongsTo(models.User,{
+      as:'user',
+      foreignKey: 'userId'
+    })
   };
   return Coordinate;
 };
